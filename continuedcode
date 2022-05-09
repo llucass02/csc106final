@@ -1,0 +1,306 @@
+frameRate(60);
+
+var leftX = 166;
+var rightX = 307; 
+var grassXs = []; 
+var jump = 1;
+var y = 0;
+var currentScene= 0;
+var count =0;
+var object =[];
+var Xpos = [];
+var Ypos = [];
+var Top = [];
+var score = 0;
+var objects=[];
+var FlappyBird = function() {
+    this.x = 100;
+    this.y = 150;
+    
+    this.descentSpeed = 10;
+    
+    this.height = 0;
+    this.heightIncrement = 0.25;
+    
+    this.dead = false;
+    
+    this.draw = function() {
+        pushMatrix(); {
+            var x = this.x + 16;
+            var y = this.y + 12;
+            
+            var angle = max(-20, (this.descentSpeed - 10) * 4.1);
+            if(angle <= 0) {
+                
+            }
+            
+            translate(x, y);
+            rotate(angle);
+            scale(0.80);
+            translate(-x, -y);
+            
+            translate(this.x, this.y);
+            this.drawSprite();
+        } popMatrix();
+    };
+    
+    this.drawSprite = function() {
+        noStroke();
+        fill(255, 255, 255);
+        rect(2, 8, 10, 8);
+        rect(8, 4, 4, 2);
+        rect(12, 2, 6, 2);
+        rect(16, 2, 10, 10);
+        rect(26, 4, 4, 10);
+        
+        fill(23, 23, 23);
+        rect(0, 8, 2, 2);
+        rect(0, 10, 2, 2);
+        rect(0, 12, 2, 2);
+        rect(2, 6, 2, 2);
+        rect(2, 14, 2, 2);
+        rect(4, 6, 2, 2);
+        rect(4, 16, 2, 2);
+        rect(4, 18, 2, 2);
+        rect(6, 4, 2, 2);
+        rect(6, 6, 2, 2);
+        rect(6, 16, 2, 2);
+        rect(6, 20, 2, 2);
+        rect(8, 2, 2, 2);
+        rect(8, 6, 2, 2);
+        rect(8, 16, 2, 2);
+        rect(8, 20, 2, 2);
+        rect(10, 2, 2, 2);
+        rect(10, 8, 2, 2);
+        rect(10, 14, 2, 2);
+        rect(10, 22, 2, 2);
+        rect(12, 0, 2, 2);
+        rect(12, 10, 2, 2);
+        rect(12, 12, 2, 2);
+        rect(12, 22, 2, 2);
+        rect(14, 0, 2, 2);
+        rect(14, 22, 2, 2);
+        rect(16, 0, 2, 2);
+        rect(16, 4, 2, 2);
+        rect(16, 6, 2, 2);
+        rect(16, 8, 2, 2);
+        rect(16, 16, 2, 2);
+        rect(16, 22, 2, 2);
+        rect(18, 0, 2, 2);
+        rect(18, 2, 2, 2);
+        rect(18, 10, 2, 2);
+        rect(18, 14, 2, 2);
+        rect(18, 18, 2, 2);
+        rect(18, 22, 2, 2);
+        rect(20, 0, 2, 2);
+        rect(20, 12, 2, 2);
+        rect(20, 16, 2, 2);
+        rect(20, 20, 2, 2);
+        rect(22, 0, 2, 2);
+        rect(22, 12, 2, 2);
+        rect(22, 16, 2, 2);
+        rect(22, 20, 2, 2);
+        rect(24, 0, 2, 2);
+        rect(24, 12, 2, 2);
+        rect(24, 16, 2, 2);
+        rect(24, 20, 2, 2);
+        rect(26, 2, 2, 2);
+        rect(26, 6, 2, 2);
+        rect(26, 8, 2, 2);
+        rect(26, 12, 2, 2);
+        rect(26, 16, 2, 2);
+        rect(26, 20, 2, 2);
+        rect(28, 4, 2, 2);
+        rect(28, 12, 2, 2);
+        rect(28, 16, 2, 2);
+        rect(28, 20, 2, 2);
+        rect(30, 6, 2, 2);
+        rect(30, 8, 2, 2);
+        rect(30, 10, 2, 2);
+        rect(30, 12, 2, 2);
+        rect(30, 16, 2, 2);
+        rect(30, 20, 2, 2);
+        rect(32, 12, 2, 2);
+        rect(32, 16, 2, 2);
+        rect(32, 18, 2, 2);
+        rect(34, 14, 2, 2);
+        
+        fill(247, 255, 0);
+        rect(2, 12, 2, 2);
+        rect(4, 14, 2, 2);
+        rect(6, 14, 2, 2);
+        rect(8, 14, 2, 2);
+        rect(10, 6, 2, 2);
+        rect(10, 12, 2, 2);
+        rect(12, 4, 2, 2);
+        rect(12, 6, 2, 2);
+        rect(12, 8, 2, 2);
+        rect(12, 14, 2, 2);
+        rect(14, 4, 2, 12);
+        rect(16, 10, 2, 6);
+        rect(18, 12, 2, 2);
+        
+        fill(244, 202, 22);
+        rect(6, 18, 2, 2);
+        rect(8, 18, 2, 2);
+        rect(10, 16, 6, 6);
+        rect(16, 18, 2, 4);
+        rect(18, 20, 2, 2);
+        
+        fill(214, 43, 43);
+        rect(18, 16, 2, 2);
+        rect(20, 14, 14, 2);
+        rect(20, 18, 12, 2);
+    };
+    
+    
+};
+var FlappiestBird = new FlappyBird();
+
+
+var drawPixelatedEllipse = function(x, y, width, height, colour) {
+    fill(colour);
+    ellipse(x, y, width, height);
+    
+    noStroke();
+    fill(red(colour) + 10, green(colour) + 10, blue(colour) + 10);
+    for(var i = 0; i <= 360; i += 7) {
+        var xx = x + cos(i) * (width / 2);
+        var yy = y + sin(i) * (height / 2);
+        
+        rect(xx - 3, yy - 3, 6, 6);
+    }
+};
+
+for (var j = 0; j < 10; j++){
+    Xpos.push(j*200+500);
+    Ypos.push(random(100,300));
+    Top.push(Ypos[j] - 400);
+}
+
+
+mouseClicked = function() {
+    jump = 0;
+    jump -= 1;
+};
+
+ 
+var draw= function() {
+    
+
+    background(29, 40, 115);
+    
+    //Draw background
+    noStroke();
+    
+    fill(255, 255, 255);
+    drawPixelatedEllipse(20, 320, 80, 80, color(255, 255, 255));
+    drawPixelatedEllipse(70, 340, 80, 80, color(255, 255, 255));
+    drawPixelatedEllipse(115, 325, 80, 75, color(255, 255, 255));
+    drawPixelatedEllipse(160, 330, 50, 60, color(255, 255, 255));
+    drawPixelatedEllipse(200, 320, 60, 60, color(255, 255, 255));
+    drawPixelatedEllipse(240, 325, 60, 80, color(255, 255, 255));
+    drawPixelatedEllipse(270, 335, 60, 80, color(255, 255, 255));
+    drawPixelatedEllipse(310, 330, 60, 60, color(255, 255, 255));
+    drawPixelatedEllipse(350, 325, 50, 60, color(255, 255, 255));
+    drawPixelatedEllipse(390, 320, 70, 80, color(255, 255, 255));
+    
+    drawPixelatedEllipse(112, 370, 76, 76, color(29, 196, 79));
+    drawPixelatedEllipse(251, 378, 83, 90, color(29, 196, 79));
+    drawPixelatedEllipse(0, 367, 74, 89, color(29, 196, 79));
+    drawPixelatedEllipse(350, 368, 73, 60, color(29, 196, 79));
+    drawPixelatedEllipse(140, 376, 72, 71, color(29, 196, 79));
+    drawPixelatedEllipse(434, 353, 70, 85, color(29, 196, 79));
+    drawPixelatedEllipse(207, 380, 77, 86, color(29, 196, 79));
+    drawPixelatedEllipse(320, 373, 73, 84, color(29, 196, 79));
+    drawPixelatedEllipse(82, 372, 75, 73, color(29, 196, 79));
+    drawPixelatedEllipse(221, 380, 77, 84, color(29, 196, 79));
+    drawPixelatedEllipse(388, 375, 77, 72, color(29, 196, 79));
+    drawPixelatedEllipse(273, 380, 90, 75, color(29, 196, 79));
+    drawPixelatedEllipse(404, 388, 88, 88, color(29, 196, 79));
+    drawPixelatedEllipse(176, 378, 85, 79, color(29, 196, 79));
+    drawPixelatedEllipse(86, 368, 81, 83, color(29, 196, 79));
+    drawPixelatedEllipse(293, 378, 88, 90, color(29, 196, 79));
+    drawPixelatedEllipse(52, 376, 84, 84, color(29, 196, 79));
+    drawPixelatedEllipse(24, 376, 74, 81, color(29, 196, 79));
+    
+    
+
+    
+    fill(124, 242, 0);
+    for(var i = 0; i < 30; i++) {
+        var x = i * 15 - count;
+        quad(x, 352, x + 7, 352, x, 360, x - 7, 360);
+    }
+    
+    
+//Draw obstacles
+       
+        
+        
+   
+
+if (currentScene === 0) {
+    fill(0, 0, 0); // khan academy image or bitmoji
+    var unga = constrain(y,-1000000000,350);
+    rect(200,unga,50,50);
+    y += jump;
+    jump += 0.02;
+    if (y >= 350) {
+        jump = 0;
+        currentScene = 1;
+    }
+    for (var i = 0; i < Xpos.length; ++i){
+       strokeWeight(2);
+        stroke(0, 0, 0);
+        
+        fill(42, 138, 29);
+        rect(Xpos[i]+5,Top[i],40,300);
+        rect(Xpos[i]+5,Ypos[i],40,350);
+        rect(Xpos[i],Ypos[i],50,25);
+        rect(Xpos[i],Ypos[i]-125,50,25);
+        Xpos[i] -= 1;
+        
+        noStroke();
+
+    
+    fill(250, 215, 73);
+    rect(0, 360, 400, 40);
+    fill(84, 222, 0);
+    rect(0, 350, 400, 12);
+    fill(255, 255, 255, 200);
+    rect(0, 350, 400, 2);
+    fill(0, 0, 0);
+    rect(0, 349, 400, 1);
+    
+    fill(0, 0, 0, 40);
+    rect(0, 360, 400, 3);
+    rect(0, 361, 400, 3);
+    rect(0, 362, 400, 3);
+    
+        if (Xpos[i] === 200) {
+            score++;
+        }
+        if (Xpos[i] < -100) {
+            Xpos[i] = 2000;
+        }
+        if (Xpos[i] < 250 && Xpos[i] > 200) {
+            if (Ypos[i] < unga || Top[i] + 300 > unga) {
+            currentScene = 1;
+            }
+        }
+    }
+    }
+    if (currentScene === 1) {
+        background(255, 0, 0);
+        fill(0, 0, 0);
+        textSize(30);
+        text("Game Over.",120,200);
+        text("Score: " + score, 140,250);
+    }
+    
+
+   
+
+};
+
